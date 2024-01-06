@@ -12,6 +12,8 @@
 		60192C652B49748B0060E9B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60192C642B49748B0060E9B2 /* Assets.xcassets */; };
 		60192C682B49748B0060E9B2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60192C672B49748B0060E9B2 /* Preview Assets.xcassets */; };
 		60192C702B497B030060E9B2 /* AuthForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60192C6F2B497B030060E9B2 /* AuthForm.swift */; };
+		60192C722B4983810060E9B2 /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60192C712B4983810060E9B2 /* Decoration.swift */; };
+		60192C742B4984DC0060E9B2 /* AuthModle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60192C732B4984DC0060E9B2 /* AuthModle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		60192C642B49748B0060E9B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60192C672B49748B0060E9B2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		60192C6F2B497B030060E9B2 /* AuthForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthForm.swift; sourceTree = "<group>"; };
+		60192C712B4983810060E9B2 /* Decoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoration.swift; sourceTree = "<group>"; };
+		60192C732B4984DC0060E9B2 /* AuthModle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,8 @@
 			children = (
 				60192C622B49748A0060E9B2 /* LoginView.swift */,
 				60192C6F2B497B030060E9B2 /* AuthForm.swift */,
+				60192C712B4983810060E9B2 /* Decoration.swift */,
+				60192C732B4984DC0060E9B2 /* AuthModle.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -150,7 +156,9 @@
 			files = (
 				60192C632B49748A0060E9B2 /* LoginView.swift in Sources */,
 				60192C702B497B030060E9B2 /* AuthForm.swift in Sources */,
+				60192C742B4984DC0060E9B2 /* AuthModle.swift in Sources */,
 				60192C612B49748A0060E9B2 /* TodoAppApp.swift in Sources */,
+				60192C722B4983810060E9B2 /* Decoration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

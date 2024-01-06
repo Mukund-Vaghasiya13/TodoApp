@@ -6,13 +6,25 @@
 //
 
 import SwiftUI
+import Observation
+
+
+@Observable class FewApiService{
+    var ussername:String = ""
+    var password:String = ""
+}
 
 struct LoginView: View {
+    @State var apiservice = FewApiService()
     var body: some View {
-        VStack {
-            
+        NavigationStack {
+            VStack {
+                AuthForm(Username: $apiservice.ussername, Password: $apiservice.password)
+                
+                Spacer()
+            }.navigationTitle("Login")
+            .padding()
         }
-        .padding()
     }
 }
 

@@ -4,6 +4,7 @@
 //
 //  Created by Mukund vaghasiya  on 06/01/24.
 //
+//
 
 import SwiftUI
 import Observation
@@ -32,7 +33,7 @@ struct LoginView: View {
                     .fontWeight(.heavy)
                 
                 NavigationLink {
-                    
+                    RegisterUser()
                 } label: {
                     DesignButton(text: "Create new User")
                 }

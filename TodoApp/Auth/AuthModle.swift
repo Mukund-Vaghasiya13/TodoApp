@@ -7,6 +7,9 @@
 
 import Foundation
 
-struct Modle{
-//    TODO: Create Modle
+struct Modle:Codable{
+    var data:String?
+    var message:String?
+    var statuscode:Int?
+    var success:Bool?
 }

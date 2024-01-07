@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Modle:Codable{
+struct Modle:Hashable,Codable{
     var data:String?
     var message:String?
     var statuscode:Int?

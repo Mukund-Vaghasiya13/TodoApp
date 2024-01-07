@@ -40,39 +40,47 @@ import Observation
 }
 
 struct LoginView: View {
+    @State var path = NavigationPath()
     @State var apiservice = FewApiService()
     var body: some View {
-        NavigationStack {
-            VStack(spacing:30) {
-                AuthForm(Username: $apiservice.ussername, Password: $apiservice.password)
-                
-                Button {
-                    Task{
-                        await apiservice.CallingApi()
-                        if let response = apiservice.Response{
-                            print(response.message ?? "nil")
-                        }else{
-                            print("nil")
+        NavigationStack(path: $path) {
+            ZStack{
+                VStack(spacing:30) {
+                    AuthForm(Username: $apiservice.ussername, Password: $apiservice.password)
+                    
+                    Button {
+                        Task{
+                            await apiservice.CallingApi()
+                            if let response = apiservice.Response{
+                                path.append(response)
+                            }else{
+                                print("nil")
+                            }
                         }
+                    } label: {
+                        DesignButton(text: "Login")
                     }
-                } label: {
-                   DesignButton(text: "Login")
+                    
+                    Text("Or")
+                        .font(.system(size: 20))
+                        .fontWeight(.heavy)
+                    
+                    NavigationLink {
+                        RegisterUser()
+                    } label: {
+                        DesignButton(text: "Create new User")
+                    }
+                    
+                    
+                    Spacer()
                 }
-                
-                Text("Or")
-                    .font(.system(size: 20))
-                    .fontWeight(.heavy)
-                
-                NavigationLink {
-                    RegisterUser()
-                } label: {
-                    DesignButton(text: "Create new User")
-                }
-
-                
-                Spacer()
-            }.navigationTitle("Login")
+            }
+            .navigationDestination(for: Modle.self) { data in
+                Home()
+            }
+            .navigationTitle("Login")
             .padding()
+            
         }
     }
 }

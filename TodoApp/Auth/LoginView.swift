@@ -7,39 +7,9 @@
 //
 
 import SwiftUI
-import Observation
-
-
-@Observable class FewApiService{
-    var ussername:String = ""
-    var password:String = ""
-    var Response:Modle?
-    
-    func CallingApi()async{
-        do{
-            let data = [
-                
-                "username":ussername,
-                "password":password
-            
-            ]
-           Response =  try await BackendApi.PostData(for: Modle.self, url: URL(string: "http://localhost:3000/api/todo/v1/login"), Bodydata: data, header: nil)
-        }catch(ApiError.EncriptionError){
-            print("EncriptionError")
-        }catch(ApiError.RequestError){
-            print("RequestError")
-        }catch(ApiError.invalidResponse){
-            print("invalidResponse")
-        }catch(ApiError.invalidUrl){
-            print("invalidUrl")
-        }catch{
-            print("Other error")
-        }
-    }
-    
-}
 
 struct LoginView: View {
+    @AppStorage("Token") var token:String?
     @State var path = NavigationPath()
     @State var apiservice = FewApiService()
     var body: some View {
@@ -50,9 +20,10 @@ struct LoginView: View {
                     
                     Button {
                         Task{
-                            await apiservice.CallingApi()
+                            await apiservice.CallingApi(endpoint: "http://localhost:3000/api/todo/v1/login")
                             if let response = apiservice.Response{
-                                path.append(response)
+                                token = response.data ?? nil
+                                path.append(Modle(data:response.data))
                             }else{
                                 print("nil")
                             }
@@ -66,7 +37,7 @@ struct LoginView: View {
                         .fontWeight(.heavy)
                     
                     NavigationLink {
-                        RegisterUser()
+                        RegisterUser(path: $path)
                     } label: {
                         DesignButton(text: "Create new User")
                     }
@@ -75,8 +46,13 @@ struct LoginView: View {
                     Spacer()
                 }
             }
+            .task {
+                if token != nil{
+                    path.append(Modle(data: token))
+                }
+            }
             .navigationDestination(for: Modle.self) { data in
-                Home()
+                Home(path: $path, Token: data)
             }
             .navigationTitle("Login")
             .padding()

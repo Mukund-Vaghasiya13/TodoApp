@@ -6,21 +6,37 @@
 //
 
 import SwiftUI
-import Observation
-
-@Observable class RegisterApiService{
-    var ussername:String = ""
-    var password:String = ""
-}
-
 
 struct RegisterUser : View{
-    @State var Apiservice = RegisterApiService()
+    @AppStorage("Token") var token:String?
+    @State var Apiservice = FewApiService()
+    @Binding var path:NavigationPath
     var body: some View{
         VStack{
             AuthForm(Username: $Apiservice.ussername, Password: $Apiservice.password)
             Button {
-               
+                Task{
+                    await Apiservice.CallingApi(endpoint: "http://localhost:3000/api/todo/v1/register")
+                    if let response = Apiservice.Response{
+                      
+                        if response.success ?? false{
+                            
+                            // calling Again Register with Login
+                            
+                            await Apiservice.CallingApi(endpoint: "http://localhost:3000/api/todo/v1/login")
+                            
+                            if let response = Apiservice.Response{
+                                if response.success ?? false{
+                                    token = response.data ?? nil
+                                    path.append(Modle(data: response.data))
+                                }
+                            }
+                            
+                        }
+                    }else{
+                        print("nil")
+                    }
+                }
             } label: {
                DesignButton(text: "Sinup")
             }

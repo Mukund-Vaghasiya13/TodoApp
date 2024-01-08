@@ -65,10 +65,10 @@
 			children = (
 				604863E72B4A684F00989639 /* ApiHnadling.swift */,
 				60192C602B49748A0060E9B2 /* TodoAppApp.swift */,
+				605C1DD42B4B0790007B0D2F /* Home.swift */,
 				60192C6E2B4978720060E9B2 /* Auth */,
 				60192C642B49748B0060E9B2 /* Assets.xcassets */,
 				60192C662B49748B0060E9B2 /* Preview Content */,
-				605C1DD42B4B0790007B0D2F /* Home.swift */,
 			);
 			path = TodoApp;
 			sourceTree = "<group>";

@@ -8,8 +8,19 @@
 import SwiftUI
 
 struct Home: View {
+    @Binding var path:NavigationPath
+    var Token:Modle?
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Button(action: {
+                UserDefaults.standard.removeObject(forKey: "Token")
+                path.removeLast(path.count)
+            }, label: {
+               DesignButton(text: "Logout")
+            })
+        }
+        .navigationTitle("Home")
+        .navigationBarBackButtonHidden()
     }
 }
 

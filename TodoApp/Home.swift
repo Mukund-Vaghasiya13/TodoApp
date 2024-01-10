@@ -10,15 +10,37 @@ import SwiftUI
 struct Home: View {
     @Binding var path:NavigationPath
     var Token:Modle?
+    
+    var TempArray = ["One","Second","Third"]
     var body: some View {
         VStack{
+            
+//            MARK: Temp
+            List(TempArray,id: \.count) { i in
+                Text(i)
+                    .swipeActions(content:{
+                        Button(action: {
+                            
+                        }, label: {
+                           Text("Delete")
+                        })
+                        Button(action: {
+                            
+                        }, label: {
+                           Text("Edit")
+                        })
+                        .tint(.orange)
+                    })
+                    
+            }
+        }.toolbar(content: {
             Button(action: {
                 UserDefaults.standard.removeObject(forKey: "Token")
                 path.removeLast(path.count)
             }, label: {
-               DesignButton(text: "Logout")
+                Text("Logout")
             })
-        }
+        })
         .navigationTitle("Home")
         .navigationBarBackButtonHidden()
     }

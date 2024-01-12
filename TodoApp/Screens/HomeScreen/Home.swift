@@ -11,34 +11,12 @@ struct Home: View {
     @State var todHandle:TodoHandle = TodoHandle()
     @Binding var path:NavigationPath
     var Token:Modle?
+   
     
     var body: some View {
         VStack{
-//            MARK: Temp
-            
-            if let data = todHandle.todoResponse?.data{
-                List(data,id:\._id) { i in
-                    Text(i.todo ?? "nil")
-                        .swipeActions(content:{
-                            Button(action: {
-                                
-                            }, label: {
-                                Text("Delete")
-                            })
-                            Button(action: {
-                                
-                            }, label: {
-                                Text("Edit")
-                            })
-                            .tint(.orange)
-                        })
-                    
-                }
-            }else{
-                List{
-                    Text("Enter Data Or Nil")
-                }
-            }
+
+            TodoList(todHandle: $todHandle, token: Token?.data)
             
         }
         .task {
@@ -49,15 +27,12 @@ struct Home: View {
             }
         }
         .toolbar(content: {
-            Button(action: {
-                UserDefaults.standard.removeObject(forKey: "Token")
-                path.removeLast(path.count)
-            }, label: {
-                Text("Logout")
-            })
+            ToolBar(todHandle: $todHandle, token: Token?.data, path: $path)
         })
         .navigationTitle("Home")
         .navigationBarBackButtonHidden()
     }
 }
+
+
 

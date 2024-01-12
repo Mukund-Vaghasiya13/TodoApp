@@ -16,6 +16,7 @@
 		60192C742B4984DC0060E9B2 /* AuthModle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60192C732B4984DC0060E9B2 /* AuthModle.swift */; };
 		60192C762B498AC90060E9B2 /* RegisterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60192C752B498AC90060E9B2 /* RegisterUser.swift */; };
 		601AB65B2B50F5D4008CE656 /* HomeModle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601AB65A2B50F5D4008CE656 /* HomeModle.swift */; };
+		6038FB3E2B5168A200090C0C /* HomeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6038FB3D2B5168A200090C0C /* HomeUtils.swift */; };
 		604863E82B4A684F00989639 /* ApiHnadling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604863E72B4A684F00989639 /* ApiHnadling.swift */; };
 		605C1DD52B4B0790007B0D2F /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605C1DD42B4B0790007B0D2F /* Home.swift */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,7 @@
 		60192C732B4984DC0060E9B2 /* AuthModle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModle.swift; sourceTree = "<group>"; };
 		60192C752B498AC90060E9B2 /* RegisterUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUser.swift; sourceTree = "<group>"; };
 		601AB65A2B50F5D4008CE656 /* HomeModle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModle.swift; sourceTree = "<group>"; };
+		6038FB3D2B5168A200090C0C /* HomeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUtils.swift; sourceTree = "<group>"; };
 		604863E72B4A684F00989639 /* ApiHnadling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiHnadling.swift; sourceTree = "<group>"; };
 		605C1DD42B4B0790007B0D2F /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,6 +110,7 @@
 			children = (
 				605C1DD42B4B0790007B0D2F /* Home.swift */,
 				601AB65A2B50F5D4008CE656 /* HomeModle.swift */,
+				6038FB3D2B5168A200090C0C /* HomeUtils.swift */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6038FB3E2B5168A200090C0C /* HomeUtils.swift in Sources */,
 				60192C632B49748A0060E9B2 /* LoginView.swift in Sources */,
 				60192C762B498AC90060E9B2 /* RegisterUser.swift in Sources */,
 				60192C702B497B030060E9B2 /* AuthForm.swift in Sources */,

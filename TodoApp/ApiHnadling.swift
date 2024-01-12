@@ -50,6 +50,33 @@ class BackendApi{
         return nil
     }
     
+    static func GetData<T:Codable>(for:T.Type,accessToken:String,endpoint url:URL?,header:[String:String]?)async throws -> T?{
+        guard let usl = url else { throw ApiError.invalidUrl}
+        
+        var request = URLRequest(url: usl)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        if let header = header{
+            for key in header.keys{
+                request.setValue(header[key], forHTTPHeaderField: key)
+            }
+        }
+        
+        do{
+            let (data,response) = try await URLSession.shared.data(for: request)
+            guard response is HTTPURLResponse else{throw ApiError.invalidResponse}
+            
+            if let Response = DecriptData(for: T.self, data: data){
+                return Response
+            }
+            
+        }catch{
+            throw ApiError.RequestError
+        }
+        return nil
+    }
+    
     private static func EncriptData(data:[String:String])->Data?{
         var encriptdata:Data?
         do{

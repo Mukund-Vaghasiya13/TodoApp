@@ -21,10 +21,15 @@ struct Todo:Codable{
     var success:Bool?
 }
 
+
+
 @Observable class TodoHandle{
+    
+    
     var todoResponse:Todo?
     var showalert = false
     var alertMessage:String?
+    
     
     
     func GetTodosList(AccessToken:String)async{
@@ -44,11 +49,8 @@ struct Todo:Codable{
         }
     }
     
-    func AddTodo(todo:String,token:String) async{
+    func TodoOperation(url:String,data:[String:String],token:String) async{
         do{
-            let data = [
-                "todo":todo
-            ]
             
             let header = [
             
@@ -56,7 +58,7 @@ struct Todo:Codable{
                 
             ]
             
-            let response = try await BackendApi.PostData(for:Modle.self , url: URL(string: "http://localhost:3000/api/todo/v1/Todos/todo/add"), Bodydata: data, header: header)
+            let response = try await BackendApi.PostData(for:Modle.self , url: URL(string: url), Bodydata: data, header: header)
             
             if let response = response{
                 if !(response.success ?? false){
@@ -66,17 +68,19 @@ struct Todo:Codable{
             }
             
         }catch(ApiError.EncriptionError){
-            print("EncriptionError")
+            print("AddTodo EncriptionError")
         }catch(ApiError.RequestError){
-            print("RequestError")
+            print("AddTodo RequestError")
         }catch(ApiError.invalidResponse){
-            print("invalidResponse")
+            print("AddTodo invalidResponse")
         }catch(ApiError.invalidUrl){
-            print("invalidUrl")
+            print("AddTodo invalidUrl")
         }catch{
-            print("Other error")
+            print("AddTodo Other error")
         }
     }
+    
+
 }
 
 

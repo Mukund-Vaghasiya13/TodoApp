@@ -11,22 +11,61 @@ struct TodoList:View {
     
     @Binding var todHandle:TodoHandle
     var token:String?
+    @State var todo = ""
+    @State var ShowAlert = false
     var body: some View {
         if let data = todHandle.todoResponse?.data{
             List(data,id:\._id) { i in
                 Text(i.todo ?? "nil")
+                    .alert("Add todo", isPresented: $ShowAlert) {
+                        TextField("Enter changes", text: $todo)
+                        Button("Update") {
+                            Task{
+                                if let token = token{
+                                    let data = [
+                                        "todo":todo,
+                                        "TodoID":i._id ?? ""
+                                    ]
+                                    await todHandle.TodoOperation(url: "http://localhost:3000/api/todo/v1/Todos/todo/update", data: data, token: token)
+                                }else{
+                                    print("tool bar Problem in Login Token")
+                                }
+                            }
+                        }
+                        .bold()
+                        .font(.system(size: 20))
+                    }
                     .swipeActions(content:{
                         Button(action: {
                             
-                        }, label: {
-                            Text("Delete")
-                        })
-                        Button(action: {
+                            Task{
+                                let data = [
+                                
+                                    "TodoID":i._id ?? "nil"
+                                
+                                ]
+                                if let token = token{
+                                    await todHandle.TodoOperation(url: "http://localhost:3000/api/todo/v1/Todos/todo/delete", data: data, token: token)
+                                }else{
+                                    print("tool bar Problem in Login Token")
+                                }
+                            }
                             
                         }, label: {
-                            Text("Edit")
+                            Text("Delete")
+                                .fontWeight(.heavy)
                         })
-                        .tint(.orange)
+                        .tint(.red)
+                        
+                        Button(action: {
+                            ShowAlert = true
+                            print("Working")
+                        }, label: {
+                            Text("Edit")
+                                .bold()
+                        })
+                        .tint(.blue)
+                       
                     })
                 
             }.refreshable {
@@ -38,6 +77,7 @@ struct TodoList:View {
                     }
                 }
             }
+            
         }else{
             List{
                 Text("Enter Data Or Nil")
@@ -69,7 +109,10 @@ struct ToolBar:View {
                 Button("Add") {
                     Task{
                         if let token = token{
-                            await todHandle.AddTodo(todo:todo,token:token)
+                            let data = [
+                               "todo":todo
+                            ]
+                            await todHandle.TodoOperation(url: "http://localhost:3000/api/todo/v1/Todos/todo/add", data: data, token: token)
                         }else{
                             print("tool bar Problem in Login Token")
                         }
@@ -78,7 +121,6 @@ struct ToolBar:View {
                 .bold()
                 .font(.system(size: 20))
             }
-
             
             Spacer()
             

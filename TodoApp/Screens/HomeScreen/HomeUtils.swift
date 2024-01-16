@@ -26,7 +26,7 @@ struct TodoList:View {
                                         "todo":todo,
                                         "TodoID":i._id ?? ""
                                     ]
-                                    await todHandle.TodoOperation(url: "http://localhost:3000/api/todo/v1/Todos/todo/update", data: data, token: token)
+                                    await todHandle.TodoOperation(url: "https://todo-me6v.onrender.com/api/todo/v1/Todos/todo/update", data: data, token: token)
                                 }else{
                                     print("tool bar Problem in Login Token")
                                 }
@@ -45,7 +45,7 @@ struct TodoList:View {
                                 
                                 ]
                                 if let token = token{
-                                    await todHandle.TodoOperation(url: "http://localhost:3000/api/todo/v1/Todos/todo/delete", data: data, token: token)
+                                    await todHandle.TodoOperation(url: "https://todo-me6v.onrender.com/api/todo/v1/Todos/todo/delete", data: data, token: token)
                                 }else{
                                     print("tool bar Problem in Login Token")
                                 }
@@ -112,7 +112,7 @@ struct ToolBar:View {
                             let data = [
                                "todo":todo
                             ]
-                            await todHandle.TodoOperation(url: "http://localhost:3000/api/todo/v1/Todos/todo/add", data: data, token: token)
+                            await todHandle.TodoOperation(url: "https://todo-me6v.onrender.com/api/todo/v1/Todos/todo/add", data: data, token: token)
                         }else{
                             print("tool bar Problem in Login Token")
                         }

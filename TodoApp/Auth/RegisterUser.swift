@@ -23,7 +23,7 @@ struct RegisterUser : View{
                             
                             // calling Again Register with Login
                             
-                            await Apiservice.CallingApi(endpoint: "http://localhost:3000/api/todo/v1/login")
+                            await Apiservice.CallingApi(endpoint: "https://todo-xiii.onrender.com/api/todo/v1/login")
                             
                             if let response = Apiservice.Response{
                                 if response.success ?? false{

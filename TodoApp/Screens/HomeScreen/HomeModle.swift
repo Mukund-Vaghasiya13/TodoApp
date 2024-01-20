@@ -34,7 +34,7 @@ struct Todo:Codable{
     
     func GetTodosList(AccessToken:String)async{
         do{
-            todoResponse = try await BackendApi.GetData(for: Todo.self, accessToken: AccessToken, endpoint:URL(string: "http://localhost:3000/api/todo/v1/Todos/todo/gettodo"), header: nil)
+            todoResponse = try await BackendApi.GetData(for: Todo.self, accessToken: AccessToken, endpoint:URL(string: "https://todo-xiii.onrender.com/api/todo/v1/Todos/todo/gettodo"), header: nil)
             
         }catch(ApiError.EncriptionError){
             print("EncriptionError")
